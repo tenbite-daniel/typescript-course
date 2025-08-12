@@ -1,13 +1,6 @@
-let awesomeName: string = "shakeAndBake";
-awesomeName = "something";
-awesomeName = awesomeName.toUpperCase();
-console.log(awesomeName);
-awesomeName = 20;
+let orderStatus: "processing" | "shipped" | "delivered" = "processing";
+orderStatus = "shipped";
+orderStatus = "delivered";
 
-let amount: number = 20;
-amount = 12 - 1;
-// amount = "pants";
-
-let isAwesome: boolean = true;
-isAwesome = false;
-// isAwesome = "something";
+let discount: number | string = 20;
+discount = "20%";
