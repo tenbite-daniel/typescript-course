@@ -1,21 +1,20 @@
-let prices: number[] = [100, 75, 42];
-// prices.push('hello')
+// objects
+let car: { brand: string; year: number } = {
+    brand: "toyota",
+    year: 2020,
+};
+car.brand = "ford";
+// car.color = "blue";
 
-let fruit: string[] = ["apple", "orange"];
+let car1: { brand: string; year: number } = {
+    brand: "audi",
+    year: 2022,
+};
 
-// let randomValues:[] = ['helo']
+let book = { title: "book", cost: 20 };
+let pen = { title: "pen", cost: 10 };
+let notebook = { title: "notebook" };
 
-let emptyValues: number[] = [];
+let items: { readonly title: string; cost?: number }[] = [book, pen, notebook];
 
-let names = ["peter", "susan", 1];
-let array: (string | boolean)[] = ["apple", true, "orange", false];
-
-// Array Challange
-
-let temperatures: number[] = [20, 25, 30];
-// temperatures.push('hot')
-
-let colors: string[] = ["red", "green", "blue"];
-// colors.push(true)
-
-let mixedArray: (number | string)[] = [1, "two", 3];
+items[0].title = "new boook";
