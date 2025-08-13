@@ -95,30 +95,49 @@
 // processInput(20);
 // processInput("tim");
 
-// Functions - Using Objects as Function Parameters
-function createEmployee({ id }: { id: number }): {
-    id: number;
-    isActive: boolean;
-} {
-    return { id, isActive: id % 2 === 0 };
-}
-const first = createEmployee({ id: 1 });
-const second = createEmployee({ id: 2 });
-console.log(first, second);
+// // Functions - Using Objects as Function Parameters
+// function createEmployee({ id }: { id: number }): {
+//     id: number;
+//     isActive: boolean;
+// } {
+//     return { id, isActive: id % 2 === 0 };
+// }
+// const first = createEmployee({ id: 1 });
+// const second = createEmployee({ id: 2 });
+// console.log(first, second);
 
-// alternative
-function createStudent(student: { id: number; name: string }): void {
-    console.log(`welcome to the course ${student.name.toUpperCase()}!!!`);
+// // alternative
+// function createStudent(student: { id: number; name: string }): void {
+//     console.log(`welcome to the course ${student.name.toUpperCase()}!!!`);
+// }
+// const newStudent = {
+//     id: 5,
+//     name: "anna",
+//     email: "anna@gmail.com",
+// };
+// createStudent(newStudent);
+//     // Gotcha - Excess Property Checks
+// createStudent({
+//     id: 1,
+//     name: "bob",
+//     // email: "bobo@gmail.com",
+// });
+
+// Challange
+
+function processData(
+    input: string | number,
+    config: { reverse: boolean } = { reverse: false }
+): string | number {
+    if (typeof input === "number") {
+        return input * input;
+    } else {
+        return config.reverse
+            ? input.toUpperCase().split("").reverse().join("")
+            : input.toUpperCase();
+    }
 }
-const newStudent = {
-    id: 5,
-    name: "anna",
-    email: "anna@gmail.com",
-};
-createStudent(newStudent);
-createStudent({
-    id: 1,
-    name: "bob",
-    // Gotcha - Excess Property Checks
-    // email: "bobo@gmail.com",
-});
+
+console.log(processData(10));
+console.log(processData("hello"));
+console.log(processData("hello", { reverse: true }));
