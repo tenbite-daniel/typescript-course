@@ -201,29 +201,74 @@
 // printStaffDetails(bob);
 // printStaffDetails(steve);
 
-// the intersection type in Union
-type Book = { id: number; name: string; price: number };
-type DiscountedBook = Book & { discount: number };
-const book1: Book = {
-    id: 1,
-    name: "how to cook a dragon",
-    price: 15,
-};
-const book2: Book = {
-    id: 2,
-    name: "the secret life of unicorns",
-    price: 18,
-};
-const discountedBook: DiscountedBook = {
-    id: 2,
-    name: "Gnomes vs. Goblins: The Ultimate Guide",
-    price: 25,
-    discount: 0.15,
-};
+// // the intersection type in Union
+// type Book = { id: number; name: string; price: number };
+// type DiscountedBook = Book & { discount: number };
+// const book1: Book = {
+//     id: 1,
+//     name: "how to cook a dragon",
+//     price: 15,
+// };
+// const book2: Book = {
+//     id: 2,
+//     name: "the secret life of unicorns",
+//     price: 18,
+// };
+// const discountedBook: DiscountedBook = {
+//     id: 2,
+//     name: "Gnomes vs. Goblins: The Ultimate Guide",
+//     price: 25,
+//     discount: 0.15,
+// };
 
-// type alias also supports computed properties
-const propName = "age";
-type Animal = {
-    [propName]: number;
+// // type alias also supports computed properties
+// const propName = "age";
+// type Animal = {
+//     [propName]: number;
+// };
+// let tiger: Animal = { [propName]: 5 };
+
+// Interface type - allow to setup  for objects (only objects)
+interface Book {
+    readonly isbn: number;
+    title: string;
+    author: string;
+    genre?: string;
+    // method
+    printAuthor(): void;
+    printTitle(message: string): string;
+    printSomething: (someValue: number) => number;
+}
+const deepWork: Book = {
+    isbn: 123,
+    title: "deep work",
+    author: "cal newport",
+    // genre: "self-help",
+    // printAuthor() {
+    //     console.log(this.author);
+    // },
+    printTitle(msg) {
+        return `${this.title} ${msg}`;
+    },
+    // first option
+    printSomething: function (someValue) {
+        return someValue;
+    },
+    // second option
+    // printSomething: (someValue) => {
+    //     // console.log(this.)
+    //     console.log(deepWork.author);
+    //     return someValue;
+    // },
+    //third option
+    // printSomething(someValue) {
+    //     return someValue;
+    // },
+    printAuthor: () => {
+        console.log(deepWork.author);
+    },
 };
-let tiger: Animal = { [propName]: 5 };
+// deepWork.printAuthor();
+// const result = deepWork.printTitle("is awesome book");
+// console.log(result);
+console.log(deepWork.printSomething(34));
