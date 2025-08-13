@@ -273,24 +273,81 @@
 // // console.log(result);
 // console.log(deepWork.printSomething(34));
 
-// challange - interface
-interface Computer {
-    readonly id: number;
-    brand: string;
-    ram: number;
-    storage?: number;
-    upgradeRam(value: number): number;
+// // challange - interface
+// interface Computer {
+//     readonly id: number;
+//     brand: string;
+//     ram: number;
+//     storage?: number;
+//     upgradeRam(value: number): number;
+// }
+// const laptop: Computer = {
+//     id: 1,
+//     brand: "acer",
+//     ram: 4,
+//     upgradeRam(value: number) {
+//         this.ram += value;
+//         return this.ram;
+//     },
+// };
+
+// console.log(laptop.upgradeRam(8));
+// console.log(laptop);
+// console.log(laptop.storage);
+
+// merging interface
+interface Person {
+    name: string;
+    getDetails(): string;
 }
-const laptop: Computer = {
-    id: 1,
-    brand: "acer",
-    ram: 4,
-    upgradeRam(value: number) {
-        this.ram += value;
-        return this.ram;
+interface DogOwner {
+    dogName: string;
+    getDogDetails(): string;
+}
+interface Person {
+    age: number;
+}
+
+const person: Person = {
+    name: "john",
+    age: 12,
+    getDetails() {
+        return `Name: ${this.name}, Age: ${this.age}`;
+    },
+};
+// extned interface (inherit from an interface)
+interface Employee extends Person {
+    employeeID: number;
+}
+const employee: Employee = {
+    name: "jane",
+    age: 28,
+    employeeID: 123,
+    getDetails() {
+        return `Name: ${this.name}, Age: ${this.age}, Employee ID: ${this.employeeID}`;
     },
 };
 
-console.log(laptop.upgradeRam(8));
-console.log(laptop);
-console.log(laptop.storage);
+console.log(person.getDetails());
+console.log(employee.getDetails());
+
+interface Manager extends Person, DogOwner {
+    managePeople(): void;
+}
+
+const manager: Manager = {
+    name: "bob",
+    age: 35,
+    dogName: "rex",
+    getDetails() {
+        return `Name: ${this.name}, Age: ${this.age}`;
+    },
+    getDogDetails() {
+        return `Name: ${this.dogName}`;
+    },
+    managePeople() {
+        console.log("Managing people...");
+    },
+};
+
+manager.managePeople();
