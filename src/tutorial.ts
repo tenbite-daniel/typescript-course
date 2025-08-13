@@ -73,8 +73,24 @@
 // console.log(result);
 
 // functions - void return type
-function logMessage(message: string): void {
-    console.log(message);
-    // return 'hello world'
+// function logMessage(message: string): void {
+//     console.log(message);
+//     // return 'hello world'
+// }
+// logMessage("Hello, TypeScript");
+
+// Functions - Using Union Types as Function Parameters
+// Challenge
+
+function processInput(input: string | number) {
+    if (typeof input === "number") {
+        input = input * 2;
+        console.log(input);
+    } else {
+        input = input.toUpperCase();
+        console.log(input);
+    }
 }
-logMessage("Hello, TypeScript");
+
+processInput(20);
+processInput("tim");
