@@ -1,32 +1,41 @@
-// objects fundamentals
+// functions in typescript
 
-// let car: { brand: string; year: number } = {
-//     brand: "toyota",
-//     year: 2020,
-// };
-// car.brand = "ford";
-// // car.color = "blue";
+// function sayHi(name: string) {
+//     console.log(`Hello there ${name.toUpperCase()}`);
+// }
+// sayHi("Tim");
+// sayHi(3)
 
-// let car1: { brand: string; year: number } = {
-//     brand: "audi",
-//     year: 2022,
-// };
+// function calculateDiscount(price: number): number {
+//     const hasDiscount = true;
+//     if (hasDiscount) {
+//         return price;
+//     }
+//     return price * 0.9;
+// }
 
-// let book = { title: "book", cost: 20 };
-// let pen = { title: "pen", cost: 10 };
-// let notebook = { title: "notebook" };
+// const finalPrice = calculateDiscount(200);
+// console.log(finalPrice);
 
-// let items: { readonly title: string; cost?: number }[] = [book, pen, notebook];
+// why to be careful of any
+// function addThree(number: any) {
+//     let anotherNumber: number = 3;
+//     return number + anotherNumber;
+// }
+// const result = addThree(3);
+// const someValue = result;
 
-// // items[0].title = "new boook";
+// run time error
+// someValue.myMethod();
 
-let bike: { brand: string; year: number } = { brand: "Yamaha", year: 2010 };
-// bike.year = 'bike'
-
-let laptop: { brand: string; year: number } = { brand: "acer" };
-
-let product1 = { title: "shirt", price: 20 };
-let product2 = { title: "pants" };
-
-let products: { title: string; price?: number }[] = [product1, product2];
-products.push({ title: "shoes", price: "expensive" });
+// challange functions
+let names: string[] = ["tim", "dan"];
+function checkName(name: string): boolean {
+    return names.includes(name);
+}
+let nameToCheck = "tim";
+if (checkName(nameToCheck)) {
+    console.log(`${nameToCheck} is in the list`);
+} else {
+    console.log(`${nameToCheck} is not on the list`);
+}
