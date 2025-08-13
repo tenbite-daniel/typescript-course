@@ -228,47 +228,69 @@
 // };
 // let tiger: Animal = { [propName]: 5 };
 
-// Interface type - allow to setup  for objects (only objects)
-interface Book {
-    readonly isbn: number;
-    title: string;
-    author: string;
-    genre?: string;
-    // method
-    printAuthor(): void;
-    printTitle(message: string): string;
-    printSomething: (someValue: number) => number;
+// // Interface type - allow to setup  for objects (only objects)
+// interface Book {
+//     readonly isbn: number;
+//     title: string;
+//     author: string;
+//     genre?: string;
+//     // method
+//     printAuthor(): void;
+//     printTitle(message: string): string;
+//     printSomething: (someValue: number) => number;
+// }
+// const deepWork: Book = {
+//     isbn: 123,
+//     title: "deep work",
+//     author: "cal newport",
+//     // genre: "self-help",
+//     // printAuthor() {
+//     //     console.log(this.author);
+//     // },
+//     printTitle(msg) {
+//         return `${this.title} ${msg}`;
+//     },
+//     // first option
+//     printSomething: function (someValue) {
+//         return someValue;
+//     },
+//     // second option
+//     // printSomething: (someValue) => {
+//     //     // console.log(this.)
+//     //     console.log(deepWork.author);
+//     //     return someValue;
+//     // },
+//     //third option
+//     // printSomething(someValue) {
+//     //     return someValue;
+//     // },
+//     printAuthor: () => {
+//         console.log(deepWork.author);
+//     },
+// };
+// // deepWork.printAuthor();
+// // const result = deepWork.printTitle("is awesome book");
+// // console.log(result);
+// console.log(deepWork.printSomething(34));
+
+// challange - interface
+interface Computer {
+    readonly id: number;
+    brand: string;
+    ram: number;
+    storage?: number;
+    upgradeRam(value: number): number;
 }
-const deepWork: Book = {
-    isbn: 123,
-    title: "deep work",
-    author: "cal newport",
-    // genre: "self-help",
-    // printAuthor() {
-    //     console.log(this.author);
-    // },
-    printTitle(msg) {
-        return `${this.title} ${msg}`;
-    },
-    // first option
-    printSomething: function (someValue) {
-        return someValue;
-    },
-    // second option
-    // printSomething: (someValue) => {
-    //     // console.log(this.)
-    //     console.log(deepWork.author);
-    //     return someValue;
-    // },
-    //third option
-    // printSomething(someValue) {
-    //     return someValue;
-    // },
-    printAuthor: () => {
-        console.log(deepWork.author);
+const laptop: Computer = {
+    id: 1,
+    brand: "acer",
+    ram: 4,
+    upgradeRam(value: number) {
+        this.ram += value;
+        return this.ram;
     },
 };
-// deepWork.printAuthor();
-// const result = deepWork.printTitle("is awesome book");
-// console.log(result);
-console.log(deepWork.printSomething(34));
+
+console.log(laptop.upgradeRam(8));
+console.log(laptop);
+console.log(laptop.storage);
