@@ -123,21 +123,55 @@
 //     // email: "bobo@gmail.com",
 // });
 
-// Challange
+// // Challange
 
-function processData(
-    input: string | number,
-    config: { reverse: boolean } = { reverse: false }
-): string | number {
-    if (typeof input === "number") {
-        return input * input;
-    } else {
-        return config.reverse
-            ? input.toUpperCase().split("").reverse().join("")
-            : input.toUpperCase();
-    }
+// function processData(
+//     input: string | number,
+//     config: { reverse: boolean } = { reverse: false }
+// ): string | number {
+//     if (typeof input === "number") {
+//         return input * input;
+//     } else {
+//         return config.reverse
+//             ? input.toUpperCase().split("").reverse().join("")
+//             : input.toUpperCase();
+//     }
+// }
+
+// console.log(processData(10));
+// console.log(processData("hello"));
+// console.log(processData("hello", { reverse: true }));
+
+// Type Alias
+type User = { id: number; name: string; isActive: boolean };
+const john: User = {
+    id: 1,
+    name: "john",
+    isActive: true,
+};
+const susan: User = {
+    id: 1,
+    name: "susan",
+    isActive: false,
+};
+
+function createUser(user: User): User {
+    console.log(`Hello there ${user.name.toUpperCase()} !!!`);
+    return user;
 }
 
-console.log(processData(10));
-console.log(processData("hello"));
-console.log(processData("hello", { reverse: true }));
+type StringOrNumber = string | number;
+let value: StringOrNumber;
+value = "hello";
+value = 123;
+
+type Theme = "light" | "dark";
+
+let theme: Theme;
+theme = "dark";
+theme = "light";
+
+function setTheme(t: Theme) {
+    theme = t;
+}
+setTheme("dark");
