@@ -29,13 +29,32 @@
 // someValue.myMethod();
 
 // challange functions
-let names: string[] = ["tim", "dan"];
-function checkName(name: string): boolean {
-    return names.includes(name);
+// let names: string[] = ["tim", "dan"];
+// function checkName(name: string): boolean {
+//     return names.includes(name);
+// }
+// let nameToCheck = "tim";
+// if (checkName(nameToCheck)) {
+//     console.log(`${nameToCheck} is in the list`);
+// } else {
+//     console.log(`${nameToCheck} is not on the list`);
+// }
+
+// optional and default parameters in functions
+//optional parameter
+function calculatePrice(price: number, discount?: number): number {
+    return price - (discount || 0);
 }
-let nameToCheck = "tim";
-if (checkName(nameToCheck)) {
-    console.log(`${nameToCheck} is in the list`);
-} else {
-    console.log(`${nameToCheck} is not on the list`);
+
+let priceAfterDiscount = calculatePrice(100, 20);
+
+// default parameter
+function calculateScore(
+    initialScore: number,
+    penaltyPoints: number = 0
+): number {
+    return initialScore - penaltyPoints;
 }
+
+let scoreAfterPenalty = calculateScore(100, 20);
+let scoreWithoutPenalty = calculateScore(300);
