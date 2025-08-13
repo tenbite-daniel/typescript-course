@@ -61,13 +61,20 @@
 // let scoreWithoutPenalty = calculateScore(300);
 
 // rest parameter
-function sum(message: string, ...numbers: number[]): string {
-    const doubled = numbers.map((num) => num * 2);
-    console.log(doubled);
-    let total = numbers.reduce((prev, current) => {
-        return prev + current;
-    }, 0);
-    return `${message} ${total}`;
+// function sum(message: string, ...numbers: number[]): string {
+//     const doubled = numbers.map((num) => num * 2);
+//     console.log(doubled);
+//     let total = numbers.reduce((prev, current) => {
+//         return prev + current;
+//     }, 0);
+//     return `${message} ${total}`;
+// }
+// let result = sum("The total is: ", 1, 2, 3, 4, 5);
+// console.log(result);
+
+// functions - void return type
+function logMessage(message: string): void {
+    console.log(message);
+    // return 'hello world'
 }
-let result = sum("The total is: ", 1, 2, 3, 4, 5);
-console.log(result);
+logMessage("Hello, TypeScript");
