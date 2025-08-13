@@ -1,20 +1,32 @@
-// objects
-let car: { brand: string; year: number } = {
-    brand: "toyota",
-    year: 2020,
-};
-car.brand = "ford";
-// car.color = "blue";
+// objects fundamentals
 
-let car1: { brand: string; year: number } = {
-    brand: "audi",
-    year: 2022,
-};
+// let car: { brand: string; year: number } = {
+//     brand: "toyota",
+//     year: 2020,
+// };
+// car.brand = "ford";
+// // car.color = "blue";
 
-let book = { title: "book", cost: 20 };
-let pen = { title: "pen", cost: 10 };
-let notebook = { title: "notebook" };
+// let car1: { brand: string; year: number } = {
+//     brand: "audi",
+//     year: 2022,
+// };
 
-let items: { readonly title: string; cost?: number }[] = [book, pen, notebook];
+// let book = { title: "book", cost: 20 };
+// let pen = { title: "pen", cost: 10 };
+// let notebook = { title: "notebook" };
 
-items[0].title = "new boook";
+// let items: { readonly title: string; cost?: number }[] = [book, pen, notebook];
+
+// // items[0].title = "new boook";
+
+let bike: { brand: string; year: number } = { brand: "Yamaha", year: 2010 };
+// bike.year = 'bike'
+
+let laptop: { brand: string; year: number } = { brand: "acer" };
+
+let product1 = { title: "shirt", price: 20 };
+let product2 = { title: "pants" };
+
+let products: { title: string; price?: number }[] = [product1, product2];
+products.push({ title: "shoes", price: "expensive" });
