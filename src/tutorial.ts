@@ -587,23 +587,45 @@
 // };
 // console.log(anotherStudent);
 
-// Challenge - "typeof" guard
-type ValueType = string | number | boolean;
+// // Challenge - "typeof" guard
+// type ValueType = string | number | boolean;
 
-let value: ValueType;
-const random = Math.random();
-value = random < 0.33 ? "Hello" : random < 0.66 ? 123.456 : true;
+// let value: ValueType;
+// const random = Math.random();
+// value = random < 0.33 ? "Hello" : random < 0.66 ? 123.456 : true;
 
-function checkValue(value: ValueType): void {
-    if (typeof value === "string") {
-        console.log(value.toLowerCase());
-        return;
+// function checkValue(value: ValueType): void {
+//     if (typeof value === "string") {
+//         console.log(value.toLowerCase());
+//         return;
+//     }
+//     if (typeof value === "number") {
+//         console.log(value.toFixed(2));
+//         return;
+//     }
+//     console.log(`boolean: ${value}`);
+// }
+// checkValue(value);
+
+// Challenge - Equality Narrowing && Challenge - check for property
+type Dog = { type: "dog"; name: string; bark: () => void };
+type Cat = { type: "cat"; name: string; meow: () => void };
+type Animal = Dog | Cat;
+
+function makeSound1(animal: Animal) {
+    if (animal.type === "dog") {
+        animal.bark();
+    } else {
+        animal.meow();
     }
-    if (typeof value === "number") {
-        console.log(value.toFixed(2));
-        return;
-    }
-    console.log(`boolean: ${value}`);
 }
 
-checkValue(value);
+// The "in" operator in TypeScript is used to narrow down the type of a variable when used in a conditional statement.It checks if a property or method exists on an object. If it exists, TypeScript will narrow the type to the one that has this property.
+
+function makeSound2(animal: Animal) {
+    if ("bark" in animal) {
+        animal.bark();
+    } else {
+        animal.meow();
+    }
+}
