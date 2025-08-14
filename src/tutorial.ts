@@ -352,45 +352,87 @@
 
 // manager.managePeople();
 
-// challange - part 1 and part 2
-interface Person {
-    name: string;
+// // challange - part 1 and part 2
+// interface Person {
+//     name: string;
+// }
+// interface DogOwner extends Person {
+//     dogName: string;
+// }
+// interface Manager extends Person {
+//     managePeple(): void;
+//     delegateTasks(): void;
+// }
+
+// function getEmployee(): Person | DogOwner | Manager {
+//     const random = Math.random();
+//     if (random < 0.33) {
+//         return {
+//             name: "john",
+//         };
+//     } else if (random < 0.66) {
+//         return { name: "sarah", dogName: "rex" };
+//     } else {
+//         return {
+//             name: "bob",
+//             managePeple() {
+//                 console.log("Managing people");
+//             },
+//             delegateTasks() {
+//                 console.log("Delegating tasks");
+//             },
+//         };
+//     }
+// }
+// const employee: Person | DogOwner | Manager = getEmployee();
+// // console.log(employee);
+
+// function isManager(obj: Person | DogOwner | Manager): obj is Manager {
+//     return "managePeople" in obj;
+// }
+
+// if (isManager(employee)) {
+//     employee.delegateTasks();
+// }
+
+// Tuples
+let person: [string, number] = ["john", 23];
+
+let date: readonly [number, number, number] = [12, 17, 2001];
+
+function getPerson(): [string, number] {
+    return ["john", 24];
 }
-interface DogOwner extends Person {
-    dogName: string;
-}
-interface Manager extends Person {
-    managePeple(): void;
-    delegateTasks(): void;
+let randommPerson = getPerson();
+console.log(randommPerson[0]);
+console.log(randommPerson[1]);
+
+let susan: [string, number?] = ["susan"];
+
+// enum
+
+enum ServerResponseStatus {
+    Success = 200,
+    Error = 500,
 }
 
-function getEmployee(): Person | DogOwner | Manager {
-    const random = Math.random();
-    if (random < 0.33) {
-        return {
-            name: "john",
-        };
-    } else if (random < 0.66) {
-        return { name: "sarah", dogName: "rex" };
-    } else {
-        return {
-            name: "bob",
-            managePeple() {
-                console.log("Managing people");
-            },
-            delegateTasks() {
-                console.log("Delegating tasks");
-            },
-        };
+Object.values(ServerResponseStatus).forEach((value) => {
+    if (typeof value === "number") {
+        console.log(value);
     }
-}
-const employee: Person | DogOwner | Manager = getEmployee();
-// console.log(employee);
+});
 
-function isManager(obj: Person | DogOwner | Manager): obj is Manager {
-    return "managePeople" in obj;
+interface ServerResponse {
+    result: ServerResponseStatus;
+    data: string[];
 }
 
-if (isManager(employee)) {
-    employee.delegateTasks();
+function getServerResponse(): ServerResponse {
+    return {
+        result: ServerResponseStatus.Success,
+        data: ["first item", "second item"],
+    };
 }
+
+const response: ServerResponse = getServerResponse();
+console.log(response);
