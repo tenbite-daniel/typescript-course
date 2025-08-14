@@ -528,46 +528,61 @@
 //     }
 // }
 
-// Type - Never
+// // Type - Never
 
-// let someValue: never = 0;
+// // let someValue: never = 0;
 
-type Theme = "light" | "dark";
+// type Theme = "light" | "dark";
 
-function checkTheme(theme: Theme): void {
-    if (theme === "light") {
-        console.log("light theme");
-        return;
-    }
-    if (theme === "dark") {
-        console.log("dark theme");
-        return;
-    }
-    theme;
-}
+// function checkTheme(theme: Theme): void {
+//     if (theme === "light") {
+//         console.log("light theme");
+//         return;
+//     }
+//     if (theme === "dark") {
+//         console.log("dark theme");
+//         return;
+//     }
+//     theme;
+// }
 
-enum Color {
-    Red,
-    Blue,
-    Green,
-}
+// enum Color {
+//     Red,
+//     Blue,
+//     Green,
+// }
 
-function getColorName(color: Color) {
-    switch (color) {
-        case Color.Red:
-            return "Red";
-        case Color.Blue:
-            return "Blue";
-        case Color.Green:
-            return "Green";
-        default:
-            // at build time
-            let unexpectedColor: never = color;
-            // at run time
-            throw new Error(`Unexpected color value : ${color}`);
-    }
-}
+// function getColorName(color: Color) {
+//     switch (color) {
+//         case Color.Red:
+//             return "Red";
+//         case Color.Blue:
+//             return "Blue";
+//         case Color.Green:
+//             return "Green";
+//         default:
+//             // at build time
+//             let unexpectedColor: never = color;
+//             // at run time
+//             throw new Error(`Unexpected color value : ${color}`);
+//     }
+// }
 
-console.log(getColorName(Color.Red));
-console.log(getColorName(Color.Blue));
-console.log(getColorName(Color.Green));
+// console.log(getColorName(Color.Red));
+// console.log(getColorName(Color.Blue));
+// console.log(getColorName(Color.Green));
+
+//  Modules - Global Scope "Gotcha
+import newStudent, { sayHello, person, type Student } from "./action";
+
+// import { someValue } from "./example.js";
+
+sayHello("Typescript");
+console.log(newStudent);
+console.log(person);
+
+const anotherStudent: Student = {
+    name: "bob",
+    age: 22,
+};
+console.log(anotherStudent);
