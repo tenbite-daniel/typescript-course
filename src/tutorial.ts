@@ -572,17 +572,38 @@
 // console.log(getColorName(Color.Blue));
 // console.log(getColorName(Color.Green));
 
-//  Modules - Global Scope "Gotcha
-import newStudent, { sayHello, person, type Student } from "./action";
+// //  Modules - Global Scope "Gotcha
+// import newStudent, { sayHello, person, type Student } from "./action";
 
-// import { someValue } from "./example.js";
+// // import { someValue } from "./example.js";
 
-sayHello("Typescript");
-console.log(newStudent);
-console.log(person);
+// sayHello("Typescript");
+// console.log(newStudent);
+// console.log(person);
 
-const anotherStudent: Student = {
-    name: "bob",
-    age: 22,
-};
-console.log(anotherStudent);
+// const anotherStudent: Student = {
+//     name: "bob",
+//     age: 22,
+// };
+// console.log(anotherStudent);
+
+// Challenge - "typeof" guard
+type ValueType = string | number | boolean;
+
+let value: ValueType;
+const random = Math.random();
+value = random < 0.33 ? "Hello" : random < 0.66 ? 123.456 : true;
+
+function checkValue(value: ValueType): void {
+    if (typeof value === "string") {
+        console.log(value.toLowerCase());
+        return;
+    }
+    if (typeof value === "number") {
+        console.log(value.toFixed(2));
+        return;
+    }
+    console.log(`boolean: ${value}`);
+}
+
+checkValue(value);
