@@ -630,42 +630,75 @@
 //     }
 // }
 
-// Challenge - "Truthy"/"Falsy" guard
+// // Challenge - "Truthy"/"Falsy" guard
 
-function printLength(str: string | null | undefined) {
-    if (str) {
-        console.log(str.length);
-    } else {
-        console.log("No string provided");
-    }
-}
-
-printLength("st");
-printLength("");
-printLength(null);
-printLength();
-printLength(undefined);
-
-// Challenge - "instanceof" type guard
-// try {
-//     throw "This is an error";
-//     throw new Error("This is an error");
-// } catch (error) {
-//     if (error instanceof Error) {
-//         console.log(`Caught an Error object: ${error.message}`);
+// function printLength(str: string | null | undefined) {
+//     if (str) {
+//         console.log(str.length);
 //     } else {
-//         console.log("unknown error...");
+//         console.log("No string provided");
 //     }
 // }
 
-function checkInput(input: Date | string): string {
-    if (input instanceof Date) {
-        return input.getFullYear().toString();
-    }
-    return input;
-}
-const year = checkInput(new Date());
-const random = checkInput("2020-05-05");
+// printLength("st");
+// printLength("");
+// printLength(null);
+// printLength();
+// printLength(undefined);
 
-console.log(year);
-console.log(random);
+// // Challenge - "instanceof" type guard
+// // try {
+// //     throw "This is an error";
+// //     throw new Error("This is an error");
+// // } catch (error) {
+// //     if (error instanceof Error) {
+// //         console.log(`Caught an Error object: ${error.message}`);
+// //     } else {
+// //         console.log("unknown error...");
+// //     }
+// // }
+
+// function checkInput(input: Date | string): string {
+//     if (input instanceof Date) {
+//         return input.getFullYear().toString();
+//     }
+//     return input;
+// }
+// const year = checkInput(new Date());
+// const random = checkInput("2020-05-05");
+
+// console.log(year);
+// console.log(random);
+
+// Type Predicate
+type Student = {
+    name: string;
+    study: () => void;
+};
+type User = {
+    name: string;
+    login: () => void;
+};
+type Person = Student | User;
+const randomPerson = (): Person => {
+    return Math.random() > 0.5
+        ? { name: "john", study: () => console.log("Studying") }
+        : { name: "mary", login: () => console.log("Logging in") };
+};
+
+// const person = randomPerson();
+const person: Person = {
+    name: "anna",
+    login: () => console.log("study...."),
+};
+
+function isStudent(person: Person): person is Student {
+    // return "study" as Person;
+    return (person as Student).study !== undefined;
+}
+
+if (isStudent(person)) {
+    person.study();
+} else {
+    person.login();
+}
