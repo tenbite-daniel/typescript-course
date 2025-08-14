@@ -670,35 +670,70 @@
 // console.log(year);
 // console.log(random);
 
-// Type Predicate
-type Student = {
-    name: string;
-    study: () => void;
-};
-type User = {
-    name: string;
-    login: () => void;
-};
-type Person = Student | User;
-const randomPerson = (): Person => {
-    return Math.random() > 0.5
-        ? { name: "john", study: () => console.log("Studying") }
-        : { name: "mary", login: () => console.log("Logging in") };
+// // Type Predicate
+// type Student = {
+//     name: string;
+//     study: () => void;
+// };
+// type User = {
+//     name: string;
+//     login: () => void;
+// };
+// type Person = Student | User;
+// const randomPerson = (): Person => {
+//     return Math.random() > 0.5
+//         ? { name: "john", study: () => console.log("Studying") }
+//         : { name: "mary", login: () => console.log("Logging in") };
+// };
+
+// // const person = randomPerson();
+// const person: Person = {
+//     name: "anna",
+//     login: () => console.log("study...."),
+// };
+
+// function isStudent(person: Person): person is Student {
+//     // return "study" as Person;
+//     return (person as Student).study !== undefined;
+// }
+
+// if (isStudent(person)) {
+//     person.study();
+// } else {
+//     person.login();
+// }
+
+// Challenge - Discriminated Unions and exhaustive check using the never type
+type IncrementAction = {
+    type: "increment";
+    amount: number;
+    timestamp: number;
+    user: string;
 };
 
-// const person = randomPerson();
-const person: Person = {
-    name: "anna",
-    login: () => console.log("study...."),
+type DecrementAction = {
+    type: "decrement";
+    amount: number;
+    timestamp: number;
+    user: string;
 };
 
-function isStudent(person: Person): person is Student {
-    // return "study" as Person;
-    return (person as Student).study !== undefined;
+type Action = IncrementAction | DecrementAction;
+
+function reducer(state: number, action: Action) {
+    switch (action.type) {
+        case "increment":
+            return state + action.amount;
+        case "decrement":
+            return state - action.amount;
+        default:
+            const unexpectedAction: never = action;
+            throw new Error(`Unexpected action: ${unexpectedAction}`);
+    }
 }
-
-if (isStudent(person)) {
-    person.study();
-} else {
-    person.login();
-}
+const newState = reducer(15, {
+    type: "increment",
+    user: "john",
+    amount: 5,
+    timestamp: 123456,
+});
