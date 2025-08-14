@@ -395,44 +395,68 @@
 //     employee.delegateTasks();
 // }
 
-// Tuples
-let person: [string, number] = ["john", 23];
+// // Tuples
+// let person: [string, number] = ["john", 23];
 
-let date: readonly [number, number, number] = [12, 17, 2001];
+// let date: readonly [number, number, number] = [12, 17, 2001];
 
-function getPerson(): [string, number] {
-    return ["john", 24];
+// function getPerson(): [string, number] {
+//     return ["john", 24];
+// }
+// let randommPerson = getPerson();
+// console.log(randommPerson[0]);
+// console.log(randommPerson[1]);
+
+// let susan: [string, number?] = ["susan"];
+
+// // enum
+
+// enum ServerResponseStatus {
+//     Success = 200,
+//     Error = 500,
+// }
+
+// Object.values(ServerResponseStatus).forEach((value) => {
+//     if (typeof value === "number") {
+//         console.log(value);
+//     }
+// });
+
+// interface ServerResponse {
+//     result: ServerResponseStatus;
+//     data: string[];
+// }
+
+// function getServerResponse(): ServerResponse {
+//     return {
+//         result: ServerResponseStatus.Success,
+//         data: ["first item", "second item"],
+//     };
+// }
+
+// const response: ServerResponse = getServerResponse();
+// console.log(response);
+
+// challange
+enum UserRole {
+    Admin,
+    Manager,
+    Employee,
 }
-let randommPerson = getPerson();
-console.log(randommPerson[0]);
-console.log(randommPerson[1]);
-
-let susan: [string, number?] = ["susan"];
-
-// enum
-
-enum ServerResponseStatus {
-    Success = 200,
-    Error = 500,
+type User = {
+    id: number;
+    name: string;
+    role: UserRole;
+    contact: [string, string];
+};
+function createUser(u: User): User {
+    return u;
 }
-
-Object.values(ServerResponseStatus).forEach((value) => {
-    if (typeof value === "number") {
-        console.log(value);
-    }
+const user: User = createUser({
+    id: 21,
+    name: "tim",
+    role: UserRole.Admin,
+    contact: ["tim@gmail.com", "097663262878"],
 });
 
-interface ServerResponse {
-    result: ServerResponseStatus;
-    data: string[];
-}
-
-function getServerResponse(): ServerResponse {
-    return {
-        result: ServerResponseStatus.Success,
-        data: ["first item", "second item"],
-    };
-}
-
-const response: ServerResponse = getServerResponse();
-console.log(response);
+console.log(user);
