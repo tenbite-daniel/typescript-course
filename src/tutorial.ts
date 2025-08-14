@@ -461,38 +461,69 @@
 
 // console.log(user);
 
-// Type Assertion
-let someValue: any = "this is a string";
-let strLength: number = (someValue as string).length;
-console.log(strLength);
+// // Type Assertion
+// let someValue: any = "this is a string";
+// let strLength: number = (someValue as string).length;
+// console.log(strLength);
 
-type Bird = {
-    name: string;
-};
+// type Bird = {
+//     name: string;
+// };
 
-let birdString = '{"name": "Eagle"}';
-let dogString = '{"breed": "Poodle"}';
+// let birdString = '{"name": "Eagle"}';
+// let dogString = '{"breed": "Poodle"}';
 
-let birdObject = JSON.parse(birdString);
-let dogObject = JSON.parse(dogString);
+// let birdObject = JSON.parse(birdString);
+// let dogObject = JSON.parse(dogString);
 
-let bird = birdObject as Bird;
-let dog = dogObject as Bird;
+// let bird = birdObject as Bird;
+// let dog = dogObject as Bird;
 
-console.log(bird.name);
-console.log(dog.name);
+// console.log(bird.name);
+// console.log(dog.name);
 
-enum Status {
-    Pending = "pending",
-    Declined = "declined",
+// enum Status {
+//     Pending = "pending",
+//     Declined = "declined",
+// }
+
+// type User = {
+//     name: string;
+//     status: Status;
+// };
+// // save Status.Pending in the DB as a string
+// // retrieve string from the DB
+// const statusValue = "pending";
+
+// const user: User = { name: "john", status: statusValue as Status };
+
+// Type - unknown
+
+let unknownValue: unknown;
+unknownValue = "hello world";
+unknownValue = [1, 2, 3];
+unknownValue = 42;
+unknownValue = false;
+
+if (typeof unknownValue == "number") {
+    unknownValue.toFixed(2);
 }
 
-type User = {
-    name: string;
-    status: Status;
-};
-// save Status.Pending in the DB as a string
-// retrieve string from the DB
-const statusValue = "pending";
+function runSomeCode() {
+    const random = Math.random();
+    if (random < 0.5) {
+        throw new Error("there was an error...");
+    } else {
+        throw "some error";
+    }
+}
 
-const user: User = { name: "john", status: statusValue as Status };
+try {
+    runSomeCode();
+} catch (error) {
+    if (error instanceof Error) {
+        console.log(error.message);
+    } else {
+        console.log(error);
+    }
+}
