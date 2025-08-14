@@ -607,25 +607,65 @@
 // }
 // checkValue(value);
 
-// Challenge - Equality Narrowing && Challenge - check for property
-type Dog = { type: "dog"; name: string; bark: () => void };
-type Cat = { type: "cat"; name: string; meow: () => void };
-type Animal = Dog | Cat;
+// // Challenge - Equality Narrowing && Challenge - check for property
+// type Dog = { type: "dog"; name: string; bark: () => void };
+// type Cat = { type: "cat"; name: string; meow: () => void };
+// type Animal = Dog | Cat;
 
-function makeSound1(animal: Animal) {
-    if (animal.type === "dog") {
-        animal.bark();
+// function makeSound1(animal: Animal) {
+//     if (animal.type === "dog") {
+//         animal.bark();
+//     } else {
+//         animal.meow();
+//     }
+// }
+
+// // The "in" operator in TypeScript is used to narrow down the type of a variable when used in a conditional statement.It checks if a property or method exists on an object. If it exists, TypeScript will narrow the type to the one that has this property.
+
+// function makeSound2(animal: Animal) {
+//     if ("bark" in animal) {
+//         animal.bark();
+//     } else {
+//         animal.meow();
+//     }
+// }
+
+// Challenge - "Truthy"/"Falsy" guard
+
+function printLength(str: string | null | undefined) {
+    if (str) {
+        console.log(str.length);
     } else {
-        animal.meow();
+        console.log("No string provided");
     }
 }
 
-// The "in" operator in TypeScript is used to narrow down the type of a variable when used in a conditional statement.It checks if a property or method exists on an object. If it exists, TypeScript will narrow the type to the one that has this property.
+printLength("st");
+printLength("");
+printLength(null);
+printLength();
+printLength(undefined);
 
-function makeSound2(animal: Animal) {
-    if ("bark" in animal) {
-        animal.bark();
-    } else {
-        animal.meow();
+// Challenge - "instanceof" type guard
+// try {
+//     throw "This is an error";
+//     throw new Error("This is an error");
+// } catch (error) {
+//     if (error instanceof Error) {
+//         console.log(`Caught an Error object: ${error.message}`);
+//     } else {
+//         console.log("unknown error...");
+//     }
+// }
+
+function checkInput(input: Date | string): string {
+    if (input instanceof Date) {
+        return input.getFullYear().toString();
     }
+    return input;
 }
+const year = checkInput(new Date());
+const random = checkInput("2020-05-05");
+
+console.log(year);
+console.log(random);
