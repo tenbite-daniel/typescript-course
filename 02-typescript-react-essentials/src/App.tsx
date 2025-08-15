@@ -1,12 +1,9 @@
-import Component from "./02-props";
+import Component from "./03-state";
 
 function App() {
     return (
         <main>
-            <Component name="peter" id={123}>
-                <h2>hello world</h2>
-            </Component>
-            <Component name="peter" id={123} />
+            <Component />
         </main>
     );
 }
