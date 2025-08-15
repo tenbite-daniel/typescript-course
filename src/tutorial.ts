@@ -738,34 +738,78 @@
 //     timestamp: 123456,
 // });
 
-// Generics - Fundamentals
+// // Generics - Fundamentals
 
-// let array1: string[] = ['Apple', 'Banana', 'Mango'];
-// let array2: number[] = [1, 2, 3];
-// let array3: boolean[] = [true, false, true];
+// // let array1: string[] = ['Apple', 'Banana', 'Mango'];
+// // let array2: number[] = [1, 2, 3];
+// // let array3: boolean[] = [true, false, true];
 
-let array1: Array<string> = ["Apple", "Banana", "Mango"];
-let array2: Array<number> = [1, 2, 3];
-let array3: Array<boolean> = [true, false, true];
+// let array1: Array<string> = ["Apple", "Banana", "Mango"];
+// let array2: Array<number> = [1, 2, 3];
+// let array3: Array<boolean> = [true, false, true];
 
-function genericFunction<T>(arg: T): T {
-    return arg;
+// // Generic Function and Interface
+// function genericFunction<T>(arg: T): T {
+//     return arg;
+// }
+
+// const someStringValue = genericFunction<string>("hi");
+// const someNumberValue = genericFunction<number>(21);
+// console.log(someStringValue);
+// console.log(someNumberValue);
+
+// interface GenericInterface<T> {
+//     value: T;
+//     getValue: () => T;
+// }
+
+// const genericString: GenericInterface<string> = {
+//     value: "Hello",
+//     getValue() {
+//         return this.value;
+//     },
+// };
+// console.log(genericString);
+
+// // Generics - Promise Example
+// async function someFunc(): Promise<string> {
+//     return "hello world";
+// }
+
+// const result = someFunc();
+
+// Generics - Generate Array
+
+function generateStringArray(length: number, value: string): string[] {
+    let result: string[] = [];
+    result = Array(length).fill(value);
+    return result;
+}
+console.log(generateStringArray(3, "hi"));
+
+function createArray<T>(length: number, value: T): Array<T> {
+    let result: T[] = [];
+    result = Array(length).fill(value);
+    return result;
 }
 
-const someStringValue = genericFunction<string>("hi");
-const someNumberValue = genericFunction<number>(21);
-console.log(someStringValue);
-console.log(someNumberValue);
+let arrayStrings = createArray<string>(10, "hi");
+let arrayNumbers = createArray<number>(10, 100);
+console.log(arrayStrings);
+console.log(arrayNumbers);
 
-interface GenericInterface<T> {
-    value: T;
-    getValue: () => T;
+// multiple variable types
+function pair<T, U>(param1: T, param2: U): [T, U] {
+    return [param1, param2];
+}
+let result = pair<number, string>(123, "hi");
+console.log(result);
+
+function processValue<T extends string | number>(value: T): T {
+    console.log(value);
+    return value;
 }
 
-const genericString: GenericInterface<string> = {
-    value: "Hello",
-    getValue() {
-        return this.value;
-    },
-};
-console.log(genericString);
+processValue("hello");
+processValue(123);
+// processValue(true);
