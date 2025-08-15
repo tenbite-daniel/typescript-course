@@ -703,37 +703,69 @@
 //     person.login();
 // }
 
-// Challenge - Discriminated Unions and exhaustive check using the never type
-type IncrementAction = {
-    type: "increment";
-    amount: number;
-    timestamp: number;
-    user: string;
-};
+// // Challenge - Discriminated Unions and exhaustive check using the never type
+// type IncrementAction = {
+//     type: "increment";
+//     amount: number;
+//     timestamp: number;
+//     user: string;
+// };
 
-type DecrementAction = {
-    type: "decrement";
-    amount: number;
-    timestamp: number;
-    user: string;
-};
+// type DecrementAction = {
+//     type: "decrement";
+//     amount: number;
+//     timestamp: number;
+//     user: string;
+// };
 
-type Action = IncrementAction | DecrementAction;
+// type Action = IncrementAction | DecrementAction;
 
-function reducer(state: number, action: Action) {
-    switch (action.type) {
-        case "increment":
-            return state + action.amount;
-        case "decrement":
-            return state - action.amount;
-        default:
-            const unexpectedAction: never = action;
-            throw new Error(`Unexpected action: ${unexpectedAction}`);
-    }
+// function reducer(state: number, action: Action) {
+//     switch (action.type) {
+//         case "increment":
+//             return state + action.amount;
+//         case "decrement":
+//             return state - action.amount;
+//         default:
+//             const unexpectedAction: never = action;
+//             throw new Error(`Unexpected action: ${unexpectedAction}`);
+//     }
+// }
+// const newState = reducer(15, {
+//     type: "increment",
+//     user: "john",
+//     amount: 5,
+//     timestamp: 123456,
+// });
+
+// Generics - Fundamentals
+
+// let array1: string[] = ['Apple', 'Banana', 'Mango'];
+// let array2: number[] = [1, 2, 3];
+// let array3: boolean[] = [true, false, true];
+
+let array1: Array<string> = ["Apple", "Banana", "Mango"];
+let array2: Array<number> = [1, 2, 3];
+let array3: Array<boolean> = [true, false, true];
+
+function genericFunction<T>(arg: T): T {
+    return arg;
 }
-const newState = reducer(15, {
-    type: "increment",
-    user: "john",
-    amount: 5,
-    timestamp: 123456,
-});
+
+const someStringValue = genericFunction<string>("hi");
+const someNumberValue = genericFunction<number>(21);
+console.log(someStringValue);
+console.log(someNumberValue);
+
+interface GenericInterface<T> {
+    value: T;
+    getValue: () => T;
+}
+
+const genericString: GenericInterface<string> = {
+    value: "Hello",
+    getValue() {
+        return this.value;
+    },
+};
+console.log(genericString);
