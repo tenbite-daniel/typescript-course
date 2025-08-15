@@ -911,30 +911,48 @@ import { check } from "zod";
 //     console.log(tour.name);
 // });
 
-// Classes - Intro
-class Book {
-    private checkedOut: boolean = false;
-    constructor(readonly title: string, public author: string) {}
-    // getter
-    get info() {
-        return `${this.title} by ${this.author}`;
-    }
-    // setter
-    private set checkOut(checkedOut: boolean) {
-        this.checkedOut = checkedOut;
-    }
-    get checkOut() {
-        return this.checkedOut;
-    }
-    get someInfo() {
-        this.checkOut = true;
-        return `${this.title} by ${this.author}`;
-    }
+// // Classes - Intro
+// class Book {
+//     private checkedOut: boolean = false;
+//     constructor(readonly title: string, public author: string) {}
+//     // getter
+//     get info() {
+//         return `${this.title} by ${this.author}`;
+//     }
+//     // setter
+//     private set checkOut(checkedOut: boolean) {
+//         this.checkedOut = checkedOut;
+//     }
+//     get checkOut() {
+//         return this.checkedOut;
+//     }
+//     get someInfo() {
+//         this.checkOut = true;
+//         return `${this.title} by ${this.author}`;
+//     }
+// }
+
+// const deepWork = new Book("deep work ", "cal newport");
+// console.log(deepWork.info);
+// // deepWork.checkOut = true;
+// console.log(deepWork);
+// console.log(deepWork.someInfo);
+// console.log(deepWork.checkOut);
+
+// Classes - Implement Interface
+interface IPerson {
+    name: string;
+    age: number;
+    greet(): void;
 }
 
-const deepWork = new Book("deep work ", "cal newport");
-console.log(deepWork.info);
-// deepWork.checkOut = true;
-console.log(deepWork);
-console.log(deepWork.someInfo);
-console.log(deepWork.checkOut);
+class Person implements IPerson {
+    constructor(public name: string, public age: number) {}
+    greet(): void {
+        console.log(
+            `Hello, my name is ${this.name} and I'm ${this.age} years old`
+        );
+    }
+}
+const hipster = new Person("shakeAndBake", 22);
+hipster.greet();
