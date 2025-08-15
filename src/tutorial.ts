@@ -814,53 +814,88 @@
 // processValue(123);
 // // processValue(true);
 
-// ## Generics - Type Constraints 2
+// // ## Generics - Type Constraints 2
 
-type Car = {
-    brand: string;
-    model: string;
-};
+// type Car = {
+//     brand: string;
+//     model: string;
+// };
 
-const car: Car = {
-    brand: "ford",
-    model: "mustang",
-};
+// const car: Car = {
+//     brand: "ford",
+//     model: "mustang",
+// };
 
-type Product = {
+// type Product = {
+//     name: string;
+//     price: number;
+// };
+
+// const product: Product = {
+//     name: "shoes",
+//     price: 1.99,
+// };
+
+// type Student = {
+//     name: string;
+//     age: number;
+// };
+
+// const student: Student = {
+//     name: "peter",
+//     age: 20,
+// };
+
+// function printName<T extends { name: string }>(input: T): void {
+//     console.log(input.name);
+// }
+// printName(student);
+// printName(product);
+// // printName(car);
+
+// // Generics - Default Value
+// interface StoreData<T = any> {
+//     data: T[];
+// }
+// const storeNumbers: StoreData<number> = {
+//     data: [1, 2, 3, 4, 5],
+// };
+
+// const randomStuff: StoreData = {
+//     data: ["random", 21],
+// };
+
+// Fetch Data
+const url = "https://www.course-api.com/react-tours-project";
+
+type Tour = {
+    id: string;
     name: string;
-    price: number;
+    info: string;
+    image: string;
+    price: string;
+    something: boolean;
 };
 
-const product: Product = {
-    name: "shoes",
-    price: 1.99,
-};
+async function fetchData(url: string): Promise<Tour[]> {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data: Tour[] = await response.json();
+        console.log(data);
 
-type Student = {
-    name: string;
-    age: number;
-};
-
-const student: Student = {
-    name: "peter",
-    age: 20,
-};
-
-function printName<T extends { name: string }>(input: T): void {
-    console.log(input.name);
+        return data;
+    } catch (error) {
+        const errMsg =
+            error instanceof Error ? error.message : "there was an error";
+        console.log(errMsg);
+        return [];
+    }
 }
-printName(student);
-printName(product);
-// printName(car);
 
-// Generics - Default Value
-interface StoreData<T = any> {
-    data: T[];
-}
-const storeNumbers: StoreData<number> = {
-    data: [1, 2, 3, 4, 5],
-};
-
-const randomStuff: StoreData = {
-    data: ["random", 21],
-};
+const tours = await fetchData(url);
+tours.map((tour) => {
+    console.log(tour.something);
+});
