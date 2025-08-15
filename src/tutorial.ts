@@ -913,25 +913,28 @@ import { check } from "zod";
 
 // Classes - Intro
 class Book {
-    readonly title: string;
-    author: string;
     private checkedOut: boolean = false;
-    constructor(title: string, author: string) {
-        this.title = title;
-        this.author = author;
+    constructor(readonly title: string, public author: string) {}
+    // getter
+    get info() {
+        return `${this.title} by ${this.author}`;
     }
-    public checkOut() {
-        this.checkedOut = this.toggleCheckedOutStatus();
+    // setter
+    private set checkOut(checkedOut: boolean) {
+        this.checkedOut = checkedOut;
     }
-    public isCheckedOut() {
+    get checkOut() {
         return this.checkedOut;
     }
-    private toggleCheckedOutStatus() {
-        return !this.checkedOut;
+    get someInfo() {
+        this.checkOut = true;
+        return `${this.title} by ${this.author}`;
     }
 }
 
 const deepWork = new Book("deep work ", "cal newport");
-deepWork.checkOut();
-deepWork.checkOut();
-console.log(deepWork.isCheckedOut());
+console.log(deepWork.info);
+// deepWork.checkOut = true;
+console.log(deepWork);
+console.log(deepWork.someInfo);
+console.log(deepWork.checkOut);
