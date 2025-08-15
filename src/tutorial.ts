@@ -1,5 +1,7 @@
 // functions in typescript
 
+import { check } from "zod";
+
 // function sayHi(name: string) {
 //     console.log(`Hello there ${name.toUpperCase()}`);
 // }
@@ -865,46 +867,71 @@
 //     data: ["random", 21],
 // };
 
-// Fetch Data
-import { z } from "zod";
+// // Fetch Data
+// import { z } from "zod";
 
-const url = "https://www.course-api.com/react-tours-project";
+// const url = "https://www.course-api.com/react-tours-project";
 
-const tourSchema = z.object({
-    id: z.string(),
-    name: z.string(),
-    info: z.string(),
-    image: z.string(),
-    price: z.string(),
-    something: z.string(),
-});
+// const tourSchema = z.object({
+//     id: z.string(),
+//     name: z.string(),
+//     info: z.string(),
+//     image: z.string(),
+//     price: z.string(),
+//     something: z.string(),
+// });
 
-type Tour = z.infer<typeof tourSchema>;
+// type Tour = z.infer<typeof tourSchema>;
 
-async function fetchData(url: string): Promise<Tour[]> {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const rawData: Tour[] = await response.json();
+// async function fetchData(url: string): Promise<Tour[]> {
+//     try {
+//         const response = await fetch(url);
+//         if (!response.ok) {
+//             throw new Error(`HTTP error! status: ${response.status}`);
+//         }
+//         const rawData: Tour[] = await response.json();
 
-        const result = tourSchema.array().safeParse(rawData);
-        if (!result.success) {
-            throw new Error(`Invalid data: ${result.error}`);
-        }
-        console.log(result);
+//         const result = tourSchema.array().safeParse(rawData);
+//         if (!result.success) {
+//             throw new Error(`Invalid data: ${result.error}`);
+//         }
+//         console.log(result);
 
-        return result.data;
-    } catch (error) {
-        const errMsg =
-            error instanceof Error ? error.message : "there was an error";
-        console.log(errMsg);
-        return [];
+//         return result.data;
+//     } catch (error) {
+//         const errMsg =
+//             error instanceof Error ? error.message : "there was an error";
+//         console.log(errMsg);
+//         return [];
+//     }
+// }
+
+// const tours = await fetchData(url);
+// tours.map((tour) => {
+//     console.log(tour.name);
+// });
+
+// Classes - Intro
+class Book {
+    readonly title: string;
+    author: string;
+    private checkedOut: boolean = false;
+    constructor(title: string, author: string) {
+        this.title = title;
+        this.author = author;
+    }
+    public checkOut() {
+        this.checkedOut = this.toggleCheckedOutStatus();
+    }
+    public isCheckedOut() {
+        return this.checkedOut;
+    }
+    private toggleCheckedOutStatus() {
+        return !this.checkedOut;
     }
 }
 
-const tours = await fetchData(url);
-tours.map((tour) => {
-    console.log(tour.name);
-});
+const deepWork = new Book("deep work ", "cal newport");
+deepWork.checkOut();
+deepWork.checkOut();
+console.log(deepWork.isCheckedOut());
