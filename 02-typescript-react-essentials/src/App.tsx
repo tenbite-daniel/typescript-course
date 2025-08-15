@@ -1,9 +1,11 @@
+import Component from "./01-return";
+
 function App() {
-  return (
-    <main>
-      <h2>React & Typescript</h2>
-    </main>
-  );
+    return (
+        <main>
+            <Component />
+        </main>
+    );
 }
 
 export default App;
